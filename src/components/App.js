@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import "./../styles/App.css";
-import State from "./StatesComponent";
 
 // Do not alter the states const and values inside it.
 const states = [
@@ -156,11 +155,47 @@ const states = [
 ];
 
 function App() {
+  const [stateClick, setStateClick] = useState(false);
+  const [cityClick, setCityClick] = useState(false);
+  const isChildren = true;
   return (
-    <>
-      <div id="main"></div>
-      <State states={states} />
-    </>
+    <div id="main">
+      {states.map((state, index) => {
+        return (
+          <>
+            <li
+              id={`state${index + 1}`}
+              onClick={() => setStateClick(!stateClick)}
+            >
+              {state.name}
+            </li>
+            {stateClick &&
+              state.cities.map((city, index) => {
+                return (
+                  <>
+                    <li
+                      style={isChildren ? { marginLeft: "20px" } : {}}
+                      id={`city${index + 1}`}
+                      onClick={() => setCityClick(!cityClick)}
+                    >
+                      {city.name}
+                    </li>
+                    {cityClick &&
+                      city.towns.map((town, index) => (
+                        <li
+                          style={isChildren ? { marginLeft: "40px" } : {}}
+                          id={`town${index + 1}`}
+                        >
+                          {town.name}
+                        </li>
+                      ))}
+                  </>
+                );
+              })}
+          </>
+        );
+      })}
+    </div>
   );
 }
 
