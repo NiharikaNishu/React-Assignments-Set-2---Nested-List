@@ -26,4 +26,3 @@ export default function State({ states }) {
     </>
   );
 }
-s;

@@ -3,11 +3,11 @@ import Town from "./TownsComponent";
 
 export default function City({ city, index }) {
   const [townIndex, setTownIndex] = React.useState(index);
-  
+
   const handleTown = (event) => {
     let index = event.target.id;
     index = index.charAt(index.length - 1) - 1;
-    if(townIndex === index) {
+    if (townIndex === index) {
       setTownIndex(-1);
       return;
     }
